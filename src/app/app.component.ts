@@ -20,8 +20,6 @@ export class AppComponent implements OnInit {
       null,
       [
         Validators.required,
-        Validators.minLength(8),
-        Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
       ]),
     'message' : new FormControl(null, [Validators.required, Validators.minLength(10)])
   });
