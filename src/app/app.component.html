@@ -1,0 +1,59 @@
+
+<div class="container pt-5" id="container">
+  <div class="alert alert-success alert-dismissible" data-auto-dismiss role="alert" *ngIf="msg">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Well done!!</strong> Your data has been saved !!
+  </div>
+  <div class="row justify-content-sm-center pt-5">
+      <div class="col-sm-6 shadow round pb-3">
+        <h1 class="text-center pt-3 text-secondary">Example Form</h1>
+          <form [formGroup]="exform">
+              <div class="form-group">
+                <label class="col-form-label">Name: <span>*</span></label>
+                <input formControlName="name" type="text" class="form-control">
+                <small *ngIf="name.invalid && name.touched" class="text-danger">Name is Required</small> 
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Email: <span>*</span></label>
+                <input formControlName="email" type="text" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <small *ngIf="email.invalid && email.touched " class="text-danger">Entrez une adresse email valide</small>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Phone: <span>*</span></label>
+                <input formControlName="phone" type="text" class="form-control" >
+                <small *ngIf="phone.invalid && phone.touched" class="text-danger">Phone no is Required(minimum length 8,numbers are only allowed)</small>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Message: <span>*</span></label>
+                <textarea formControlName="message" class="form-control" ></textarea>
+                <small *ngIf="message.invalid && message.touched" class="text-danger"> Message is Required(minimum length 10)</small> 
+              </div>
+              <button (click)="onOpenModal()" [disabled]="exform.invalid" type="button" class="btn btn-primary">Send</button>
+              <button (click)="exform.reset()" type="button" class="btn btn-secondary" style="margin-left: 15px;">Cancel</button>
+              <span class="obligation">(* Required Field)</span>
+            </form>
+      </div>
+  </div>
+</div>
+<!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModelLabel"
+         aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="confirmModelLabel">Confirmation</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <p>Are you sure you want to send this data ?</p>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                     <button (click)="clicksub()" class="btn btn-success"
+                        data-dismiss="modal">Yes</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
